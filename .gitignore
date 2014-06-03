@@ -1,0 +1,39 @@
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# images/media #
+##########
+
+OriginalChart/
+*.tif
+*.png
+*.gif
+*.pdf
+*.doc
+*.txt
+*.JPEG
+*.psd
+
+# compiled files #
+##################
+
+*.pyc
+
+# Vagrantfiles and setup files #
+################################
+
+.vagrant/
+setup.sh
+Vagrantfile
+
+# Secret Keys #
+###############
+
+hammond/hammond/secret_keys.py
