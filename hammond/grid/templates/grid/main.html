@@ -4,10 +4,13 @@
 
 {% block content %}
     <div id="outer">
+            {% if filled.is_active %}<div class="row"><p class="centered">Click <a href="/static/images/Table_Full.jpg">here</a> for a full-sized, downloadable image</p></div>{% endif %}
         {% for square in squares %}
+
             {% if forloop.counter0|divisibleby:"11" %}<div class="row">{% endif %}
-            <div class="grid" {% if square.has_image and square.is_revealed %}style="background-image: url('/static/images/{{square.image_name}}'); background-size: cover;"{% endif %}>{% if square.has_image and not square.is_revealed %}<div class="hidden"></div>{% endif %}</div>
+            <div class="grid" {% if square.has_image %}{% if square.is_revealed %}style="background-image: url('/static/images/{{square.image_name}}'); background-size: cover;"{% else %}style="background-image: url('/static/images/blank.jpg'); background-size: cover;"{% endif %}{% endif %}></div>
             {% if forloop.counter|divisibleby:"11" %}</div>{% endif %}
+            
         {% endfor %}
     </div>
 

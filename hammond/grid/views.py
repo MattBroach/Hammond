@@ -8,8 +8,16 @@ from grid.forms import IndexForm
 
 def main(request):
     squares = Grid_Square.objects.all()
+    filled = Command.objects.get(command="filled")
 
-    return render(request, 'grid/main.html', {'squares':squares})
+    if not filled.is_active:
+        for square in squares:
+            if square.has_image and not square.is_revealed:
+                return render(request, 'grid/main.html', {'squares':squares, 'filled':filled})
+        filled.is_active = not filled.is_active
+        filled.save()
+
+    return render(request, 'grid/main.html', {'squares':squares, 'filled':filled})
 
 def index(request):
     if request.method == 'POST':
@@ -19,7 +27,7 @@ def index(request):
             #Match code to Commands and Image keys
             code = form.cleaned_data['code']
             squares = Grid_Square.objects.all().filter(has_image=True)
-            commands = [com.command for com in Command.objects.all().filter(is_active=True)]
+            commands = [com.command for com in Command.objects.all().filter(is_active=True).exclude(command="filled")]
 
 
             for square in squares:
@@ -34,6 +42,9 @@ def index(request):
                     for square in squares:
                         square.is_revealed=False
                         square.save()
+                        filled = Command.objects.get(command="filled")
+                        filled.is_active = False
+                        filled.save()
                 if code == 'reveal':
                     for square in squares:
                         square.is_revealed=True

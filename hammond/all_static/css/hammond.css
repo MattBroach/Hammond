@@ -1,10 +1,12 @@
 html {
+    height: 100%;
 }
 
 body {
     background: #eaeae8;
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 #outer{
@@ -42,4 +44,35 @@ body {
     border: 1px solid #aaa;
     border-radius: 6px;
     background: #ddd;
+}
+
+.centered {
+    text-align: center;
+}
+
+a, a:visited {
+    color: #000;
+}
+
+a:hover {
+    color: #fdd382;
+}
+
+#form_outer{
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+#form_inner{
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.content {
+    margin: 0 auto;
+    display: inline-block;
+    text-align: left;
 }

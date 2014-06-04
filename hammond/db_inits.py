@@ -1,6 +1,6 @@
 #exec(open('db_inits.py').read())
 
-from grid.models import Grid_Square
+from grid.models import Grid_Square, Command
 
 g = Grid_Square(square_id=1, has_image=True, image_name="Split_01.jpg", image_code="Image_01")
 g.save()
@@ -200,3 +200,10 @@ g.save()
 g = Grid_Square(square_id=66, has_image=True, image_name="Split_66.jpg", image_code="Image_66")
 g.save()
 
+c = Command(command="reset", is_active=True)
+c.save()
+
+c = Command(command="reveal", is_active=True)
+c.save()
+
+c = Command(command="filled", is_active=False)

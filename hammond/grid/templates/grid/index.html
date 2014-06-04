@@ -3,9 +3,16 @@
 {% load staticfiles %}
 
 {% block content %}
-    {% if error_message %}<p><strong>{{error_message}}</stong></p>{% endif %}
-    <form action="{% url 'index' %}" method="post">{% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Submit" />
-    </form>
+    <div id="form_outer">
+        <div id="form_inner">
+            <div class="content">
+                {% if error_message %}<p><strong>{{error_message}}</stong></p>{% endif %}
+                <form action="{% url 'index' %}" method="post">{% csrf_token %}
+                    Please enter your given code: <br />
+                    {{form.code.errors}}{{form.code}} 
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
