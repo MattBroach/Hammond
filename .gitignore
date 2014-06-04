@@ -37,3 +37,8 @@ Vagrantfile
 ###############
 
 hammond/secret_keys.py
+
+# Important exceptions #
+########################
+
+!requirements.txt
