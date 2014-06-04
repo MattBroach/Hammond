@@ -1,0 +1,30 @@
+{% extends "site_base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+    <div id="outer">
+        {% for square in squares %}
+            {% if forloop.counter0|divisibleby:"11" %}<div class="row">{% endif %}
+            <div class="grid" {% if square.has_image and square.is_revealed %}style="background-image: url('/static/images/{{square.image_name}}'); background-size: cover;"{% endif %}>{% if square.has_image and not square.is_revealed %}<div class="hidden"></div>{% endif %}</div>
+            {% if forloop.counter|divisibleby:"11" %}</div>{% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- Javascript -->
+    <script src="{% static "js/jquery-1.11.0.min.js" %}"></script>
+
+    <!-- Set grid height --> 
+    <script>
+        make_square();
+
+        window.onresize = function() {
+            make_square();
+        }
+
+        function make_square() {
+            var cw = $('.grid').width();
+            $('.grid').css({'height':1.10412*cw+'px'});
+        }
+    </script>
+{% endblock content %}

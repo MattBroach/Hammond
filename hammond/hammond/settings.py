@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'grid',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -53,6 +54,7 @@ ROOT_URLCONF = 'hammond.urls'
 
 WSGI_APPLICATION = 'hammond.wsgi.application'
 
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
@@ -77,3 +79,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = '/vagrant/hammond/static/'
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = '/vagrant/hammond/media/'
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "all_static"),)

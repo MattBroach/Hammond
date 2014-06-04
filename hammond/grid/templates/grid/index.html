@@ -1,0 +1,11 @@
+{% extends "site_base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+    {% if error_message %}<p><strong>{{error_message}}</stong></p>{% endif %}
+    <form action="{% url 'index' %}" method="post">{% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Submit" />
+    </form>
+{% endblock content %}
