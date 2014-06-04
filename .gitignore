@@ -36,4 +36,4 @@ Vagrantfile
 # Secret Keys #
 ###############
 
-hammond/hammond/secret_keys.py
+hammond/secret_keys.py
