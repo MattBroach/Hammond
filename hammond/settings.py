@@ -61,7 +61,7 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 import dj_database_url
 #old, local version
 #DATABASES = DJANGO_DB
-DATABASES = []
+DATABASES = {}
 DATABASES['default'] = dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
