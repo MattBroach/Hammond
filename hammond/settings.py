@@ -26,7 +26,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -58,8 +58,15 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+import dj_database_url
+#old, local version
+#DATABASES = DJANGO_DB
+DATABASES = []
+DATABASES['default'] = dj_database_url.config()
 
-DATABASES = DJANGO_DB
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -80,10 +87,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/vagrant/hammond/static/'
-
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = '/vagrant/hammond/media/'
+STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "all_static"),)
