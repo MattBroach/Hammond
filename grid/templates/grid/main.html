@@ -2,13 +2,26 @@
 
 {% load staticfiles %}
 
+{% block extra_css %}
+    
+    <style>
+        /* Preload Images */
+        body:after
+        {
+            content: {% for square in squares %}{% if square.has_image %} url(/static/images/{{square.image_name}}){% endif %}{% endfor %};
+            display: none;
+        }
+        .fix{}
+    </style> 
+{% endblock extra_css %}
+
 {% block content %}
     <div id="outer">
             {% if filled.is_active %}<div class="row"><p class="centered">Click <a href="/static/images/Table_Full.jpg">here</a> for a full-sized, downloadable image</p></div>{% endif %}
         {% for square in squares %}
 
             {% if forloop.counter0|divisibleby:"11" %}<div class="row">{% endif %}
-            <div class="grid" {% if square.has_image %}{% if square.is_revealed %}style="background-image: url('/static/images/{{square.image_name}}'); background-size: cover;"{% else %}style="background-image: url('/static/images/blank.jpg'); background-size: cover;"{% endif %}{% endif %}></div>
+            <div class="grid" {% if square.has_image %}{% if square.is_revealed %}style="background-image: url('/static/images/{{square.image_name}}'); background-size: cover;">{% else %}style="background-image: url('/static/images/blank.jpg'); background-size: cover;"><img class="flash" src="/static/images/{{square.image_name}}" />{% endif %}{% else %}>{% endif %}</div>
             {% if forloop.counter|divisibleby:"11" %}</div>{% endif %}
             
         {% endfor %}
@@ -29,5 +42,15 @@
             var cw = $('.grid').width();
             $('.grid').css({'height':1.10412*cw+'px'});
         }
+    </script>
+
+    <!-- Fadeout temporary images -->
+    <script src="{% static "js/imagesloaded.pkgd.min.js" %}"></script>
+    <script> 
+        imagesLoaded('#outer', function() {
+            $('.flash').fadeOut(3000);
+        });
+            
+        
     </script>
 {% endblock content %}

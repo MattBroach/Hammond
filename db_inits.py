@@ -207,3 +207,4 @@ c = Command(command="reveal", is_active=True)
 c.save()
 
 c = Command(command="filled", is_active=False)
+c.save()
